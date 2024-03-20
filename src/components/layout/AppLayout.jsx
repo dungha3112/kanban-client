@@ -21,7 +21,7 @@ const AppLayout = () => {
           const res1 = await boardApi.getAll(res.token);
           dispatch(setBoards(res1));
         })
-        .catch((err) => alert(err));
+        .catch((err) => {});
     }
   }, [dispatch, logged]);
 
