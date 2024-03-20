@@ -26,13 +26,10 @@ const AppLayout = () => {
   }, [dispatch, logged]);
 
   useEffect(() => {
-    const checkAuth = async () => {
-      if (!token) {
-        navigate("/login");
-      }
-    };
-    checkAuth();
-  }, [dispatch, token, navigate]);
+    if (!logged && !token) {
+      navigate("/login");
+    }
+  }, [dispatch, token, logged, navigate]);
 
   return isLoading ? (
     <Loading fullHeight />
