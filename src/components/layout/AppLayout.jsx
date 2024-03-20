@@ -10,7 +10,7 @@ import { setBoards } from "../../redux/features/boardSlice";
 const AppLayout = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isLoading } = useSelector((state) => state.auth);
+  const { isLoading, token } = useSelector((state) => state.auth);
   const logged = localStorage.getItem("logged");
 
   useEffect(() => {
@@ -27,12 +27,12 @@ const AppLayout = () => {
 
   useEffect(() => {
     const checkAuth = async () => {
-      if (logged !== "success") {
+      if (!token) {
         navigate("/login");
       }
     };
     checkAuth();
-  }, [dispatch, logged, navigate]);
+  }, [dispatch, token, navigate]);
 
   return isLoading ? (
     <Loading fullHeight />

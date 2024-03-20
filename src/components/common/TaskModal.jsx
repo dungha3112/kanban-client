@@ -202,6 +202,8 @@ const TaskModal = (props) => {
                 height: "80%",
                 overflowX: "hidden",
                 overflowY: "auto",
+                background: "#000",
+                color: "#fff",
               }}
             >
               <CKEditor
