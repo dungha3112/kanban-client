@@ -16,14 +16,18 @@ const Home = () => {
 
   const addBoard = async () => {
     setLoading(true);
-    try {
-      const res = await boardApi.create(token);
-      dispatch(setBoards([res]));
-      navigate(`/boards/${res.id}`);
-    } catch (error) {
-      alert(error);
-    } finally {
-      setLoading(false);
+    if (token) {
+      try {
+        const res = await boardApi.create(token);
+        dispatch(setBoards([res]));
+        navigate(`/boards/${res.id}`);
+      } catch (error) {
+        alert(error);
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      navigate("/login");
     }
   };
   return (

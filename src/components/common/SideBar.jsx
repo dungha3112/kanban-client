@@ -36,15 +36,19 @@ const SideBar = () => {
 
   useEffect(() => {
     const getBoards = async () => {
-      try {
-        const res = await boardApi.getAll(token);
-        dispatch(setBoards(res));
-      } catch (err) {
-        // alert(err);
+      if (user) {
+        try {
+          const res = await boardApi.getAll(token);
+          dispatch(setBoards(res));
+        } catch (err) {
+          // alert(err);
+        }
+      } else {
+        navigate("/login");
       }
     };
     getBoards();
-  }, [dispatch, token]);
+  }, [dispatch, navigate, token, user]);
 
   useEffect(() => {
     const activeItem = boards.findIndex((e) => e._id === boardId);
@@ -90,14 +94,18 @@ const SideBar = () => {
 
   const addBoard = async () => {
     setLoading(true);
-    try {
-      const res = await boardApi.create(token);
-      const newList = [res, ...boards];
-      dispatch(setBoards(newList));
-      navigate(`/boards/${res.id}`);
-      setLoading(false);
-    } catch (err) {
-      alert(err);
+    if (user) {
+      try {
+        const res = await boardApi.create(token);
+        const newList = [res, ...boards];
+        dispatch(setBoards(newList));
+        navigate(`/boards/${res.id}`);
+        setLoading(false);
+      } catch (err) {
+        alert(err);
+      }
+    } else {
+      navigate("/login");
     }
   };
 

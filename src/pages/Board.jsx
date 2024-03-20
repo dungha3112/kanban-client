@@ -43,15 +43,19 @@ const Board = () => {
 
   useEffect(() => {
     const getBoard = async () => {
-      try {
-        const res = await boardApi.getBoardById(boardId, token);
-        setTitle(res.title);
-        setDescription(res.description);
-        setSections(res.sections);
-        setIsFavourite(res.favourite);
-        setIcon(res.icon);
-      } catch (err) {
-        // alert(err);
+      if (token) {
+        try {
+          const res = await boardApi.getBoardById(boardId, token);
+          setTitle(res.title);
+          setDescription(res.description);
+          setSections(res.sections);
+          setIsFavourite(res.favourite);
+          setIcon(res.icon);
+        } catch (err) {
+          // alert(err);
+        }
+      } else {
+        navigate("/login");
       }
     };
     getBoard();
