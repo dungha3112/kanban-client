@@ -2,24 +2,22 @@ import { Box, Container } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import assets from "../../assets";
-import authUtils from "../../utils/authUtils";
 import Loading from "../common/Loading";
 
 const AuthLayout = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const [logged, setLogged] = useState(localStorage.getItem("logged"));
 
   useEffect(() => {
-    const checkAuth = async () => {
-      const isAuth = await authUtils.isAuthenticated();
-      if (!isAuth) {
-        setLoading(false);
-      } else {
-        navigate("/");
-      }
-    };
-    checkAuth();
-  }, [navigate]);
+    setLogged(localStorage.getItem("logged"));
+    if (logged !== "success") {
+      setLoading(false);
+      navigate("/login");
+    } else {
+      navigate("/");
+    }
+  }, [logged, navigate]);
 
   return loading ? (
     <Loading fullHeight />

@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
 import { refreshToken } from "../../redux/features/authSlice";
@@ -11,25 +11,28 @@ const AppLayout = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isLoading, token } = useSelector((state) => state.auth);
-  const logged = localStorage.getItem("logged");
+  const [logged, setLogged] = useState(localStorage.getItem("logged"));
 
   useEffect(() => {
     if (logged) {
       dispatch(refreshToken())
         .unwrap()
         .then(async (res) => {
-          const res1 = await boardApi.getAll(res.token);
-          dispatch(setBoards(res1));
+          if (token) {
+            const res1 = await boardApi.getAll(res.token);
+            dispatch(setBoards(res1));
+          }
         })
         .catch((err) => {});
     }
-  }, [dispatch, logged]);
+  }, [dispatch, logged, token]);
 
   useEffect(() => {
-    if (!logged && !token) {
+    setLogged(localStorage.getItem("logged"));
+    if (logged !== "success") {
       navigate("/login");
     }
-  }, [dispatch, token, logged, navigate]);
+  }, [logged, navigate]);
 
   return isLoading ? (
     <Loading fullHeight />
