@@ -15,6 +15,7 @@ const AuthLayout = () => {
       setLoading(false);
       navigate("/login");
     } else {
+      setLoading(false);
       navigate("/");
     }
   }, [logged, navigate]);
@@ -40,6 +41,26 @@ const AuthLayout = () => {
       </Box>
     </Container>
   );
+
+  // return (
+  //   <Container component="main" maxWidth="xs">
+  //     <Box
+  //       sx={{
+  //         marginTop: 8,
+  //         display: "flex",
+  //         alignItems: "center",
+  //         flexDirection: "column",
+  //       }}
+  //     >
+  //       <img
+  //         src={assets.images.logoDark}
+  //         alt="Logo dark"
+  //         style={{ width: "100px" }}
+  //       />
+  //       <Outlet />
+  //     </Box>
+  //   </Container>
+  // );
 };
 
 export default AuthLayout;

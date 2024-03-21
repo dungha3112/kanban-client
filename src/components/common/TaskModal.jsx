@@ -207,6 +207,10 @@ const TaskModal = (props) => {
               }}
             >
               <CKEditor
+                sx={{
+                  background: "#000",
+                  color: "#fff",
+                }}
                 editor={ClassicEditor}
                 data={content}
                 onChange={updateContent}

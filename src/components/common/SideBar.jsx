@@ -36,19 +36,13 @@ const SideBar = () => {
 
   useEffect(() => {
     const getBoards = async () => {
-      if (user) {
-        try {
-          const res = await boardApi.getAll(token);
-          dispatch(setBoards(res));
-        } catch (err) {
-          // alert(err);
-        }
-      } else {
-        navigate("/login");
-      }
+      try {
+        const res = await boardApi.getAll(token);
+        dispatch(setBoards(res));
+      } catch (err) {}
     };
     getBoards();
-  }, [dispatch, navigate, token, user]);
+  }, [dispatch, token]);
 
   useEffect(() => {
     const activeItem = boards.findIndex((e) => e._id === boardId);

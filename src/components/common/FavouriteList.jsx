@@ -15,20 +15,6 @@ const FavouriteList = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    const getBoards = async () => {
-      try {
-        // const res = await boardApi.getFavourites(token);
-        // dispatch(setFavouriteList(res));
-      } catch (error) {
-        alert(error.response.data.msg);
-      }
-    };
-    if (token) {
-      getBoards();
-    }
-  }, [dispatch, token]);
-
-  useEffect(() => {
     const index = list.findIndex((e) => e._id === boardId);
     setActiveIndex(index);
   }, [boardId, list]);

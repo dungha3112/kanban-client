@@ -5,27 +5,21 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { refreshToken } from "../../redux/features/authSlice";
 import Loading from "../common/Loading";
 import SideBar from "../common/SideBar";
-import boardApi from "../../api/boardApi";
-import { setBoards } from "../../redux/features/boardSlice";
+
 const AppLayout = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isLoading, token } = useSelector((state) => state.auth);
+  const { isLoading } = useSelector((state) => state.auth);
   const [logged, setLogged] = useState(localStorage.getItem("logged"));
 
   useEffect(() => {
     if (logged) {
       dispatch(refreshToken())
         .unwrap()
-        .then(async (res) => {
-          if (token) {
-            const res1 = await boardApi.getAll(res.token);
-            dispatch(setBoards(res1));
-          }
-        })
+        .then(async (res) => {})
         .catch((err) => {});
     }
-  }, [dispatch, logged, token]);
+  }, [dispatch, logged]);
 
   useEffect(() => {
     setLogged(localStorage.getItem("logged"));
