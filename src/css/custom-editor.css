@@ -1,5 +1,5 @@
 .ck.ck-editor__main > .ck-editor__editable {
-  background-color: #000;
+  background-color: #000 !important;
   border: none;
   outline: none;
 }
@@ -9,28 +9,28 @@
 }
 
 .ck.ck-toolbar .ck.ck-toolbar__separator {
-  background-color: #000;
+  background-color: #000 !important;
 }
 
 .ck.ck-toolbar.ck-toolbar_grouping {
-  background-color: #000;
+  background-color: #000 !important;
   border: none;
 }
 
 .ck.ck-button,
 .ck.ck-button.ck-on {
-  color: white;
-  background-color: #000;
+  color: white !important;
+  background-color: #000 !important;
 }
 .ck.ck-editor {
-  background-color: black;
-  color: white;
+  background-color: #000 !important;
+  color: white !important;
   border: none;
   outline: none;
 }
 
 .ck.ck-toolbar {
-  color: white;
+  color: white !important;
   background-color: black;
   outline: none;
   border: none;
@@ -42,7 +42,7 @@
   transition: 0.2 all;
   background-color: transparent !important;
   cursor: pointer;
-  color: #fff;
+  color: #fff !important;
 }
 
 .ck-dropdown__panel .ck.ck-button.ck-off.ck-button__with-text {
