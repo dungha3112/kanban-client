@@ -17,11 +17,14 @@ import Register from "./pages/Register";
 import { Toaster } from "react-hot-toast";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
+import { useSelector } from "react-redux";
 
 const App = () => {
   const theme = createTheme({
     palette: { mode: "dark" },
   });
+
+  const { token } = useSelector((state) => state.auth);
 
   return (
     <ThemeProvider theme={theme}>
@@ -29,35 +32,13 @@ const App = () => {
       <Toaster position="top-center" />
       <BrowserRouter>
         <Routes>
-          <Route
-            path="/"
-            // path={!token && !logged ? "/login" : "/"}
-            element={<AuthLayout />}
-          >
+          <Route path="/" element={<AuthLayout />}>
             <Route path={"login"} element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="active" element={<ActiveAccount />} />
             <Route path="forgot-password" element={<ForgotPassword />} />
             <Route path="reset-password/:token" element={<ResetPassword />} />
-
-            {/* <Route
-              path={!token && !logged ? "/register" : "/"}
-              element={<Register />}
-            />
-            <Route
-              path={!token && !logged ? "active" : ""}
-              element={<ActiveAccount />}
-            />
-            <Route
-              path={!token && !logged ? "forgot-password" : ""}
-              element={<ForgotPassword />}
-            />
-            <Route
-              path={!token && !logged ? "reset-password/:token" : ""}
-              element={<ResetPassword />}
-            /> */}
           </Route>
-
           <Route path="/" element={<AppLayout />}>
             <Route index element={<Home />} />
             <Route path="boards" element={<Home />} />

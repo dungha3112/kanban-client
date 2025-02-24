@@ -1,14 +1,15 @@
 import { Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { refreshToken } from "../../redux/features/authSlice";
 import Loading from "../common/Loading";
 import SideBar from "../common/SideBar";
 
 const AppLayout = () => {
   const dispatch = useDispatch();
-  const { isLoading } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+  const { isLoading, token } = useSelector((state) => state.auth);
   const [logged, setLogged] = useState(localStorage.getItem("logged"));
 
   useEffect(() => {

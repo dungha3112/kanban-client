@@ -49,7 +49,7 @@ const Register = () => {
       .catch((err) => {
         setErrText(err);
         setTimeout(() => {
-          navigate("/");
+          // navigate("/");
         }, 2000);
       });
   };
