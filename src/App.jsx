@@ -29,12 +29,33 @@ const App = () => {
       <Toaster position="top-center" />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<AuthLayout />}>
-            <Route path="login" element={<Login />} />
+          <Route
+            path="/"
+            // path={!token && !logged ? "/login" : "/"}
+            element={<AuthLayout />}
+          >
+            <Route path={"login"} element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="active" element={<ActiveAccount />} />
             <Route path="forgot-password" element={<ForgotPassword />} />
             <Route path="reset-password/:token" element={<ResetPassword />} />
+
+            {/* <Route
+              path={!token && !logged ? "/register" : "/"}
+              element={<Register />}
+            />
+            <Route
+              path={!token && !logged ? "active" : ""}
+              element={<ActiveAccount />}
+            />
+            <Route
+              path={!token && !logged ? "forgot-password" : ""}
+              element={<ForgotPassword />}
+            />
+            <Route
+              path={!token && !logged ? "reset-password/:token" : ""}
+              element={<ResetPassword />}
+            /> */}
           </Route>
 
           <Route path="/" element={<AppLayout />}>

@@ -27,7 +27,7 @@ const Home = () => {
         setLoading(false);
       }
     } else {
-      navigate("/login");
+      // navigate("/login");
     }
   };
   return (

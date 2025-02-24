@@ -3,22 +3,22 @@ import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import assets from "../../assets";
 import Loading from "../common/Loading";
+import { useSelector } from "react-redux";
 
 const AuthLayout = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [logged, setLogged] = useState(localStorage.getItem("logged"));
+  const { token } = useSelector((state) => state.auth);
 
   useEffect(() => {
     setLogged(localStorage.getItem("logged"));
-    if (logged !== "success") {
+    if (!token && !logged) {
       setLoading(false);
-      navigate("/login");
     } else {
-      setLoading(false);
       navigate("/");
     }
-  }, [logged, navigate]);
+  }, [logged, token, navigate]);
 
   return loading ? (
     <Loading fullHeight />

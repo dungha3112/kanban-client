@@ -26,6 +26,7 @@ const SideBar = () => {
   const { boardId } = useParams();
   const { user, token } = useSelector((state) => state.auth);
   const boards = useSelector((state) => state.board.value);
+  const [logged, setLogged] = useState(localStorage.getItem("logged"));
 
   const sidebarWidth = 250;
   const [activeIndex, setActiveIndex] = useState(0);
@@ -35,14 +36,15 @@ const SideBar = () => {
   const [openInfo, setOpenInfo] = useState(false);
 
   useEffect(() => {
+    setLogged(localStorage.getItem("logged"));
     const getBoards = async () => {
       try {
         const res = await boardApi.getAll(token);
         dispatch(setBoards(res));
       } catch (err) {}
     };
-    getBoards();
-  }, [dispatch, token]);
+    if (logged) getBoards();
+  }, [dispatch, token, logged]);
 
   useEffect(() => {
     const activeItem = boards.findIndex((e) => e._id === boardId);

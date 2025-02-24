@@ -15,7 +15,7 @@ const Login = () => {
   const [passwordErrText, setPasswordErrText] = useState("");
   const [errText, setErrText] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setEmailErrText("");
     setPasswordErrText("");
@@ -38,9 +38,11 @@ const Login = () => {
     dispatch(login({ email, password }))
       .unwrap()
       .then((res) => {
+        console.log(res);
+
         localStorage.setItem("logged", "success");
         navigate("/");
-        dispatch(resetStateAuth());
+        // dispatch(resetStateAuth());
       })
       .catch((err) => setErrText(err));
   };

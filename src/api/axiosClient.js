@@ -1,9 +1,11 @@
 import axios from "axios";
 
-const baseUrl =
-  process.env.NODE_ENV === "production"
-    ? process.env.REACT_APP_API_URL
-    : process.env.REACT_APP_DEV_API_URL;
+// const baseUrl =
+//   process.env.NODE_ENV === "production"
+//     ? process.env.REACT_APP_API_URL
+//     : process.env.REACT_APP_DEV_API_URL;
+
+const baseUrl = "https://kanban-ts-server.vercel.app/api/v1/";
 
 // ------------------------------------------------
 // ------------------------------------------------
