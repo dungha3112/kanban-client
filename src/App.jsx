@@ -17,14 +17,11 @@ import Register from "./pages/Register";
 import { Toaster } from "react-hot-toast";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
-import { useSelector } from "react-redux";
 
 const App = () => {
   const theme = createTheme({
     palette: { mode: "dark" },
   });
-
-  const { token } = useSelector((state) => state.auth);
 
   return (
     <ThemeProvider theme={theme}>

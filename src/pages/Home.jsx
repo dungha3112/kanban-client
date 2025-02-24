@@ -1,6 +1,6 @@
 import { LoadingButton } from "@mui/lab";
 import { Box } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import boardApi from "../api/boardApi";
@@ -13,6 +13,10 @@ const Home = () => {
   const { token } = useSelector((state) => state.auth);
 
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (!token) navigate("/login");
+  }, [navigate, token]);
 
   const addBoard = async () => {
     setLoading(true);

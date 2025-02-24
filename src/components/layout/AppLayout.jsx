@@ -15,6 +15,7 @@ const AppLayout = () => {
   useEffect(() => {
     setLogged(localStorage.getItem("logged"));
     if (!logged) return;
+    // if (!token) navigate("/login");
     dispatch(refreshToken())
       .unwrap()
       .then((res) => {})
